@@ -1,0 +1,12 @@
+{
+  "name": "powerpuffgirlsapp",
+  "displayName": "powerpuff-girls-app",
+  "expo": {
+    "name": "powerpuff-girls-app",
+    "slug": "powerpuff-girls-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
