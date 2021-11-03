@@ -10,9 +10,7 @@ export const Container = styled(LinearGradient)`
   min-width: 120px;
   height: 70px;
 
-  background-color: #faf0fc;
   border-radius: 5px;
-  border-color: ${theme.colors.gray[50]};
 
   margin-right: 10px;
 `;

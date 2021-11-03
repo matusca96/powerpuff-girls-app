@@ -1,4 +1,5 @@
 import React from 'react';
+import { theme } from '../../styles/theme';
 
 import {
   Container,
@@ -15,7 +16,11 @@ interface CastCardProps {
 export const CastCard = ({ cast }: CastCardProps): JSX.Element => {
   return (
     <Container
-      colors={['#cdf2fa', '#fadcec', '#e6f5d0']}
+      colors={[
+        theme.colors.blue[50],
+        theme.colors.pink[50],
+        theme.colors.green[50],
+      ]}
       start={[0.9, 0.1]}
       end={[0.1, 0.9]}
     >

@@ -16,5 +16,14 @@ export const theme = {
       100: '#ececec',
       50: '#f1f1f1',
     },
+    green: {
+      50: '#e6f5d0',
+    },
+    blue: {
+      50: '#cdf2fa',
+    },
+    pink: {
+      50: '#fadcec',
+    },
   },
 };
