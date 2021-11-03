@@ -1,10 +1,7 @@
 import React from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-import { theme } from '../../styles/theme';
 
 import { CastCard } from '../CastCard';
-import { Container, ListTitleContainer, ListTitle } from './styles';
+import { Container } from './styles';
 
 export const CastList = (): JSX.Element => {
   const data: TVShow.Cast[] = [
@@ -59,20 +56,10 @@ export const CastList = (): JSX.Element => {
   ];
 
   return (
-    <>
-      <ListTitleContainer>
-        <ListTitle>Cast & Characters</ListTitle>
-        <MaterialCommunityIcons
-          name="information-outline"
-          size={18}
-          color={theme.colors.gray[900]}
-        />
-      </ListTitleContainer>
-      <Container
-        data={data}
-        renderItem={({ item: cast }) => <CastCard cast={cast} />}
-        horizontal
-      />
-    </>
+    <Container
+      data={data}
+      renderItem={({ item: cast }) => <CastCard cast={cast} />}
+      horizontal
+    />
   );
 };

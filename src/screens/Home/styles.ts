@@ -1,5 +1,5 @@
 import { LinearGradient as BaseLinearGradient } from 'expo-linear-gradient';
-import { RectButton } from 'react-native-gesture-handler';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
 import { theme } from '../../styles/theme';
@@ -50,10 +50,8 @@ export const Title = styled.Text`
 
 export const InfoContainer = styled.View`
   margin: 4px 0;
-  width: 58%;
 
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -69,10 +67,8 @@ export const SeasonsCount = styled.Text`
 
 export const BadgeContainer = styled.View`
   margin-top: 4px;
-  width: 70%;
 
   flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const Description = styled.Text`
@@ -84,11 +80,27 @@ export const Description = styled.Text`
   font-family: ${theme.fonts.regular};
 `;
 
-export const ShowHideButton = styled(RectButton)`
-  margin-top: 5px;
-  padding: 6px 8px;
+export const ShowHideButton = styled(Animated.View)`
+  margin-top: 4px;
+  padding: 4px 6px;
 
   border-radius: 4px;
 
   align-self: center;
+`;
+
+export const ListTitleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 5px;
+`;
+
+export const ListTitle = styled.Text`
+  color: ${theme.colors.gray[900]};
+
+  font-size: 22px;
+  font-family: ${theme.fonts.bold};
+
+  margin-right: 4px;
 `;

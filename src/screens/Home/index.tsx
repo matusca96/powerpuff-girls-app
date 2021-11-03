@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+import { Animated, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { Rating } from 'react-native-ratings';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Badge } from '../../components/Badge';
 import { Divider } from '../../components/Divider';
@@ -19,6 +19,8 @@ import {
   BadgeContainer,
   Description,
   ShowHideButton,
+  ListTitleContainer,
+  ListTitle,
 } from './styles';
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 import { theme } from '../../styles/theme';
@@ -54,7 +56,10 @@ export const Home = (): JSX.Element => {
           <Title>The Powerpuff Girls</Title>
           <InfoContainer>
             <Premiered>2016</Premiered>
-            <Divider orientation="vertical" />
+            <Divider
+              style={{ marginLeft: 5, marginRight: 5 }}
+              orientation="vertical"
+            />
             <SeasonsCount>3 seasons</SeasonsCount>
             <Rating
               type="heart"
@@ -62,12 +67,13 @@ export const Home = (): JSX.Element => {
               startingValue={5.8 / 2}
               ratingCount={5}
               readonly
+              style={{ marginLeft: 5 }}
             />
           </InfoContainer>
           <BadgeContainer>
             <Badge>Comedy</Badge>
-            <Badge>Action</Badge>
-            <Badge>Science-Fiction</Badge>
+            <Badge style={{ marginLeft: 6 }}>Action</Badge>
+            <Badge style={{ marginLeft: 6 }}>Science-Fiction</Badge>
           </BadgeContainer>
           <Description numberOfLines={showMore ? undefined : 4}>
             The city of Townsville may be a beautiful, bustling metropolis, but
@@ -80,8 +86,8 @@ export const Home = (): JSX.Element => {
             they show what it really means to fight like a girl.
           </Description>
 
-          <ShowHideButton onPress={() => setShowMore(!showMore)}>
-            <Animated.View
+          <TouchableWithoutFeedback onPress={() => setShowMore(!showMore)}>
+            <ShowHideButton
               style={{
                 translateY,
               }}
@@ -91,9 +97,17 @@ export const Home = (): JSX.Element => {
                 size={24}
                 color={theme.colors.gray[700]}
               />
-            </Animated.View>
-          </ShowHideButton>
+            </ShowHideButton>
+          </TouchableWithoutFeedback>
 
+          <ListTitleContainer>
+            <ListTitle>Cast & Characters</ListTitle>
+            <MaterialCommunityIcons
+              name="information-outline"
+              size={18}
+              color={theme.colors.gray[900]}
+            />
+          </ListTitleContainer>
           <CastList />
         </Content>
       </ScrollContainer>
