@@ -23,7 +23,6 @@ import {
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 
 export const Home = (): JSX.Element => {
-  const bounce = useRef(new Animated.Value(0)).current;
   const [showMore, setShowMore] = useState(false);
 
   const translateY = useBounceAnimation(!showMore, 500);
