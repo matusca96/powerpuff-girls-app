@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, StatusBar } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -20,9 +20,13 @@ import {
   Description,
   ShowHideButton,
 } from './styles';
+import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 
 export const Home = (): JSX.Element => {
+  const bounce = useRef(new Animated.Value(0)).current;
   const [showMore, setShowMore] = useState(false);
+
+  const translateY = useBounceAnimation(!showMore, 500);
 
   return (
     <>
@@ -76,11 +80,17 @@ export const Home = (): JSX.Element => {
           </Description>
 
           <ShowHideButton onPress={() => setShowMore(!showMore)}>
-            <MaterialIcons
-              name={showMore ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
-              size={24}
-              color="#969598"
-            />
+            <Animated.View
+              style={{
+                translateY,
+              }}
+            >
+              <MaterialIcons
+                name={showMore ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+                size={24}
+                color="#969598"
+              />
+            </Animated.View>
           </ShowHideButton>
         </Content>
       </ScrollContainer>
