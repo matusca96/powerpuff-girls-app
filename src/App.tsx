@@ -6,6 +6,7 @@ import {
   Inter_300Light,
   Inter_400Regular,
   Inter_500Medium,
+  Inter_700Bold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 import { Routes } from './routes';
@@ -15,6 +16,7 @@ export const App = (): JSX.Element => {
     Inter_300Light,
     Inter_400Regular,
     Inter_500Medium,
+    Inter_700Bold,
     Inter_900Black,
   });
 

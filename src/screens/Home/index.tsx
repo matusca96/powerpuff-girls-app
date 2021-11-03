@@ -22,6 +22,7 @@ import {
 } from './styles';
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 import { theme } from '../../styles/theme';
+import { CastList } from '../../components/CastList';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
@@ -92,6 +93,8 @@ export const Home = (): JSX.Element => {
               />
             </Animated.View>
           </ShowHideButton>
+
+          <CastList />
         </Content>
       </ScrollContainer>
     </>
