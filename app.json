@@ -5,6 +5,17 @@
     "name": "powerpuff-girls-app",
     "slug": "powerpuff-girls-app",
     "version": "1.0.0",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash-screen.png",
+      "resizeMode": "cover"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#fff"
+      }
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
