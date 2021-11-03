@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { theme } from '../../styles/theme';
 
 interface ContainerProps {
   orientation: 'horizontal' | 'vertical';
@@ -10,12 +11,12 @@ export const Container = styled.View<ContainerProps>`
       ? css`
           width: 100%;
 
-          border-bottom-color: #969598;
+          border-bottom-color: ${theme.colors.gray[700]};
           border-bottom-width: 1px;
         `
       : css`
           height: 100%;
           width: 1px;
-          background-color: #969598;
+          background-color: ${theme.colors.gray[700]};
         `}
 `;

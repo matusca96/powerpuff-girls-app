@@ -2,6 +2,8 @@ import { LinearGradient as BaseLinearGradient } from 'expo-linear-gradient';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
+import { theme } from '../../styles/theme';
+
 export const ScrollContainer = styled.ScrollView`
   flex: 1;
 
@@ -15,7 +17,7 @@ export const Header = styled.View`
 
   height: 250px;
 
-  background-color: #000;
+  background-color: ${theme.colors.white};
 `;
 
 export const LinearGradient = styled(BaseLinearGradient)`
@@ -40,10 +42,10 @@ export const Content = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: #322e2e;
+  color: ${theme.colors.gray[900]};
 
   font-size: 32px;
-  font-family: 'Inter_900Black';
+  font-family: ${theme.fonts.black};
 `;
 
 export const InfoContainer = styled.View`
@@ -56,13 +58,13 @@ export const InfoContainer = styled.View`
 `;
 
 export const Premiered = styled.Text`
-  color: #969598;
-  font-family: 'Inter_400Regular';
+  color: ${theme.colors.gray[700]};
+  font-family: ${theme.fonts.regular};
 `;
 
 export const SeasonsCount = styled.Text`
-  color: #969598;
-  font-family: 'Inter_400Regular';
+  color: ${theme.colors.gray[700]};
+  font-family: ${theme.fonts.regular};
 `;
 
 export const BadgeContainer = styled.View`
@@ -76,15 +78,17 @@ export const BadgeContainer = styled.View`
 export const Description = styled.Text`
   margin-top: 15px;
 
-  color: #969598;
+  color: ${theme.colors.gray[700]};
 
   font-size: 14px;
-  font-family: 'Inter_400Regular';
+  font-family: ${theme.fonts.regular};
 `;
 
 export const ShowHideButton = styled(RectButton)`
   margin-top: 5px;
   padding: 6px 8px;
+
+  border-radius: 4px;
 
   align-self: center;
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { theme } from '../../styles/theme';
 
 import { Container, BadgeText } from './styles';
 
@@ -8,7 +9,7 @@ interface BadgeProps {
 }
 
 export const Badge = ({
-  color = '#f1f1f1',
+  color = theme.colors.gray[100],
   children,
 }: BadgeProps): JSX.Element => {
   return (

@@ -6,13 +6,14 @@ import {
 
 import { Home } from '../screens/Home';
 import { EpisodeDetails } from '../screens/EpisodeDetails';
+import { theme } from '../styles/theme';
 
 const Stack = createStackNavigator();
 
 const stackOptions: StackNavigationOptions = {
   headerShown: false,
   cardStyle: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.white,
   },
 };
 

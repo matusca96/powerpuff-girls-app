@@ -21,6 +21,7 @@ import {
   ShowHideButton,
 } from './styles';
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
+import { theme } from '../../styles/theme';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
@@ -87,7 +88,7 @@ export const Home = (): JSX.Element => {
               <MaterialIcons
                 name={showMore ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
                 size={24}
-                color="#969598"
+                color={theme.colors.gray[700]}
               />
             </Animated.View>
           </ShowHideButton>
