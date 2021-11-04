@@ -1,7 +1,3 @@
-declare module '*.png';
-declare module '*.jpeg';
-declare module '*.svg';
-
 declare namespace TVShow {
   interface Show {
     id: string;

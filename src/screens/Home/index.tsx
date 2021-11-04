@@ -21,23 +21,34 @@ import {
   ContainerButton,
   ListTitleContainer,
   ListTitle,
+  SeasonsSelectButton,
+  SeasonText,
+  SeasonsSelectContainer,
+  SeasonEpisodesText,
 } from './styles';
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 import { theme } from '../../styles/theme';
 import { CastList } from '../../components/CastList';
 import { InfoCastModal } from '../../components/InfoCastModal';
+import { SeasonListModal } from '../../components/SeasonListModal';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isInfoCastModalVisible, setIsInfoCastModalVisible] = useState(false);
+  const [isSeasonListModalVisible, setIsSeasonListModalVisible] =
+    useState(false);
 
   const translateY = useBounceAnimation(!showMore, 500);
 
   return (
     <>
       <InfoCastModal
-        isVisible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        isVisible={isInfoCastModalVisible}
+        onClose={() => setIsInfoCastModalVisible(false)}
+      />
+      <SeasonListModal
+        isVisible={isSeasonListModalVisible}
+        onClose={() => setIsSeasonListModalVisible(false)}
       />
       <ScrollContainer>
         <Header>
@@ -103,7 +114,9 @@ export const Home = (): JSX.Element => {
 
           <ListTitleContainer>
             <ListTitle>Cast & Characters</ListTitle>
-            <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
+            <TouchableWithoutFeedback
+              onPress={() => setIsInfoCastModalVisible(true)}
+            >
               <MaterialCommunityIcons
                 name="information-outline"
                 size={18}
@@ -112,6 +125,21 @@ export const Home = (): JSX.Element => {
             </TouchableWithoutFeedback>
           </ListTitleContainer>
           <CastList />
+
+          <SeasonsSelectContainer>
+            <SeasonsSelectButton
+              onPress={() => setIsSeasonListModalVisible(true)}
+            >
+              <SeasonText>Season 1</SeasonText>
+              <MaterialIcons
+                name="arrow-drop-down"
+                size={24}
+                color={theme.colors.gray[900]}
+              />
+            </SeasonsSelectButton>
+
+            <SeasonEpisodesText>(41 episodes)</SeasonEpisodesText>
+          </SeasonsSelectContainer>
         </Content>
       </ScrollContainer>
     </>

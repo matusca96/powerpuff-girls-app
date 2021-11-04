@@ -1,5 +1,6 @@
 import { LinearGradient as BaseLinearGradient } from 'expo-linear-gradient';
 import { Animated } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
 import { theme } from '../../styles/theme';
@@ -103,4 +104,39 @@ export const ListTitle = styled.Text`
   font-family: ${theme.fonts.bold};
 
   margin-right: 4px;
+`;
+
+export const SeasonsSelectContainer = styled.View`
+  margin-top: 24px;
+
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const SeasonsSelectButton = styled(RectButton)`
+  flex-direction: row;
+  align-items: center;
+
+  padding: 8px 8px 8px 12px;
+  border-radius: 5px;
+
+  background-color: ${theme.colors.gray[100]};
+`;
+
+export const SeasonText = styled.Text`
+  font-size: 16px;
+  font-family: ${theme.fonts.medium};
+
+  color: ${theme.colors.gray[900]};
+
+  margin-right: 4px;
+`;
+
+export const SeasonEpisodesText = styled.Text`
+  margin-left: 8px;
+
+  font-size: 16px;
+  font-family: ${theme.fonts.regular};
+
+  color: ${theme.colors.gray[900]};
 `;
