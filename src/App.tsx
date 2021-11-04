@@ -10,8 +10,9 @@ import {
   Inter_700Bold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
-
 import { Host } from 'react-native-portalize';
+
+import { ShowProvider } from './contexts/ShowContext';
 import { Routes } from './routes';
 
 export const App = (): JSX.Element => {
@@ -28,15 +29,17 @@ export const App = (): JSX.Element => {
   }
 
   return (
-    <Host>
-      <NavigationContainer>
-        <StatusBar
-          barStyle="dark-content"
-          translucent
-          backgroundColor="transparent"
-        />
-        <Routes />
-      </NavigationContainer>
-    </Host>
+    <ShowProvider>
+      <Host>
+        <NavigationContainer>
+          <StatusBar
+            barStyle="dark-content"
+            translucent
+            backgroundColor="transparent"
+          />
+          <Routes />
+        </NavigationContainer>
+      </Host>
+    </ShowProvider>
   );
 };
