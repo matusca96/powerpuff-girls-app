@@ -1,22 +1,12 @@
 import { LinearGradient as BaseLinearGradient } from 'expo-linear-gradient';
-import { Animated } from 'react-native';
+import { Animated, FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
 import { theme } from '../../styles/theme';
 
-export const ScrollContainer = styled.ScrollView`
-  flex: 1;
-
-  width: 100%;
-`;
-
 export const Header = styled.View`
-  position: relative;
-
-  flex: 1;
-
-  height: 250px;
+  height: 260px;
 
   background-color: ${theme.colors.white};
 `;
@@ -36,10 +26,16 @@ export const Image = styled.Image`
   height: 100%;
 `;
 
-export const Content = styled.View`
-  z-index: 2;
+export const EpisodeList = styled(
+  FlatList as new () => FlatList<TVShow.Episode>,
+)`
+  flex: 1;
 
-  padding: 0 16px;
+  width: 100%;
+`;
+
+export const Content = styled.View`
+  padding: 0 16px 6px;
 `;
 
 export const Title = styled.Text`
