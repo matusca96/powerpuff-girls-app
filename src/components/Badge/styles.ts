@@ -9,7 +9,7 @@ export const Container = styled.View<ContainerProps>`
   background-color: ${({ color }) => color};
 
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 12px;
 `;
 
 export const BadgeText = styled.Text`

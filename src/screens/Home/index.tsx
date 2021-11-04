@@ -18,7 +18,7 @@ import {
   SeasonsCount,
   BadgeContainer,
   Description,
-  ShowHideButton,
+  ContainerButton,
   ListTitleContainer,
   ListTitle,
 } from './styles';
@@ -88,7 +88,7 @@ export const Home = (): JSX.Element => {
           </Description>
 
           <TouchableWithoutFeedback onPress={() => setShowMore(!showMore)}>
-            <ShowHideButton
+            <ContainerButton
               style={{
                 translateY,
               }}
@@ -98,7 +98,7 @@ export const Home = (): JSX.Element => {
                 size={24}
                 color={theme.colors.gray[700]}
               />
-            </ShowHideButton>
+            </ContainerButton>
           </TouchableWithoutFeedback>
 
           <ListTitleContainer>

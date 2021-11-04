@@ -7,7 +7,7 @@ export const Container = styled(LinearGradient)`
 
   padding: 5px 10px;
 
-  min-width: 120px;
+  min-width: 160px;
   height: 70px;
 
   border-radius: 5px;

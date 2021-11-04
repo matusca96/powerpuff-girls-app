@@ -15,7 +15,7 @@ export const Container = styled.View<ContainerProps>`
           border-bottom-width: 1px;
         `
       : css`
-          height: 90%;
+          height: 80%;
           width: 1px;
           background-color: ${theme.colors.gray[700]};
         `}

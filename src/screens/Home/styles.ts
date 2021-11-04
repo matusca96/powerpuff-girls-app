@@ -80,7 +80,7 @@ export const Description = styled.Text`
   font-family: ${theme.fonts.regular};
 `;
 
-export const ShowHideButton = styled(Animated.View)`
+export const ContainerButton = styled(Animated.View)`
   margin-top: 4px;
   padding: 4px 6px;
 

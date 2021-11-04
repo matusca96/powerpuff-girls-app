@@ -58,8 +58,10 @@ export const CastList = (): JSX.Element => {
   return (
     <Container
       data={data}
+      keyExtractor={(cast) => cast.character.id}
       renderItem={({ item: cast }) => <CastCard cast={cast} />}
       horizontal
+      persistentScrollbar
     />
   );
 };
