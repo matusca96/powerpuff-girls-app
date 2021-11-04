@@ -36,6 +36,7 @@ import {
 } from './styles';
 import useShow from '../../hooks/useShow';
 import { getPremieredYear } from '../../utils/getPremieredYear';
+import { normalizeText } from '../../utils/normalizeText';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
@@ -101,7 +102,7 @@ export const Home = (): JSX.Element => {
               ))}
             </BadgeContainer>
             <Description numberOfLines={showMore ? undefined : 4}>
-              {generalInfo.summary}
+              {normalizeText(generalInfo.summary)}
             </Description>
 
             <TouchableWithoutFeedback onPress={() => setShowMore(!showMore)}>
