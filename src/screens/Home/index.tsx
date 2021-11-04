@@ -34,6 +34,8 @@ import {
   SeasonsSelectContainer,
   SeasonEpisodesText,
 } from './styles';
+import useShow from '../../hooks/useShow';
+import { getPremieredYear } from '../../utils/getPremieredYear';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
@@ -44,23 +46,7 @@ export const Home = (): JSX.Element => {
   const translateY = useBounceAnimation(!showMore, 500);
   const { navigate } = useNavigation<Routes.NavigationProp>();
 
-  const episodes: TVShow.Episode[] = [
-    {
-      id: '1',
-      name: 'Escape from Monster Island',
-      season: 1,
-      number: 1,
-      runtime: 11,
-      image: {
-        medium:
-          'https://static.tvmaze.com/uploads/images/medium_landscape/53/132617.jpg',
-        original:
-          'https://static.tvmaze.com/uploads/images/original_untouched/53/132617.jpg',
-      },
-      summary:
-        "Bubbles wins two tickets to a concert and has to pick between Blossom and Buttercup to go with her. Meanwhile, the Mayor's plane goes down over Monster Island and it's up to the girls to rescue him.",
-    },
-  ];
+  const { generalInfo, seasons, episodes } = useShow();
 
   return (
     <>
@@ -80,7 +66,7 @@ export const Home = (): JSX.Element => {
         />
         <Image
           source={{
-            uri: 'https://static.tvmaze.com/uploads/images/original_untouched/60/151357.jpg',
+            uri: generalInfo.image.original,
           }}
           resizeMode="cover"
         />
@@ -90,37 +76,32 @@ export const Home = (): JSX.Element => {
         keyExtractor={(episode) => episode.id}
         ListHeaderComponent={
           <Content>
-            <Title>The Powerpuff Girls</Title>
+            <Title>{generalInfo.name}</Title>
             <InfoContainer>
-              <Premiered>2016</Premiered>
+              <Premiered>{getPremieredYear(generalInfo.premiered)}</Premiered>
               <Divider
                 style={{ marginLeft: 5, marginRight: 5 }}
                 orientation="vertical"
               />
-              <SeasonsCount>3 seasons</SeasonsCount>
+              <SeasonsCount>{`${seasons.length} seasons`}</SeasonsCount>
               <Rating
                 type="heart"
                 imageSize={14}
-                startingValue={5.8 / 2}
+                startingValue={generalInfo.rating.average / 2}
                 ratingCount={5}
                 readonly
                 style={{ marginLeft: 5 }}
               />
             </InfoContainer>
             <BadgeContainer>
-              <Badge>Comedy</Badge>
-              <Badge style={{ marginLeft: 6 }}>Action</Badge>
-              <Badge style={{ marginLeft: 6 }}>Science-Fiction</Badge>
+              {generalInfo.genres.map((genre) => (
+                <Badge key={genre} style={{ marginRight: 6 }}>
+                  {genre}
+                </Badge>
+              ))}
             </BadgeContainer>
             <Description numberOfLines={showMore ? undefined : 4}>
-              The city of Townsville may be a beautiful, bustling metropolis,
-              but dont be fooled! Theres evil afoot! And only three things can
-              keep the bad guys at bay: Blossom, Bubbles and Buttercup, three
-              super-powered little girls, known to their fans (and villains
-              everywhere) as The Powerpuff Girls. Juggling school, bedtimes, and
-              beating up giant monsters may be daunting, but together the
-              Powerpuff Girls are up to the task. Battling a whos who of evil,
-              they show what it really means to fight like a girl.
+              {generalInfo.summary}
             </Description>
 
             <TouchableWithoutFeedback onPress={() => setShowMore(!showMore)}>

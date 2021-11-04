@@ -12,8 +12,20 @@ declare namespace TVShow {
     _embedded: {
       cast: Cast[];
       seasons: Season[];
-      episoded: Episode[];
+      episodes: Episode[];
     };
+  }
+
+  interface GeneralInfo {
+    id: string;
+    name: string;
+    genres: string[];
+    premiered: string;
+    rating: {
+      average: number;
+    };
+    image: Image;
+    summary: string;
   }
 
   interface Episode {
@@ -22,7 +34,7 @@ declare namespace TVShow {
     season: number;
     number: number;
     runtime: number;
-    image: Image;
+    image?: Image;
     summary: string;
   }
 
@@ -56,5 +68,8 @@ declare namespace TVShow {
   interface Image {
     medium: string;
     original: string;
+
+    // only used on front
+    isFallback?: boolean;
   }
 }

@@ -37,6 +37,7 @@
     "react/jsx-props-no-spreading": "off",
     "import/no-duplicates": "off",
     "consistent-return": "off",
+    "no-underscore-dangle": "off",
     "no-plusplus": [
       2,
       {

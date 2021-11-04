@@ -1,4 +1,13 @@
-export const getShowData = async (): Promise<TVShow.Show> => {
+import { getRandomFallbackImage } from '../utils/getRandomFallbackImage';
+
+interface ShowData {
+  generalInfo: TVShow.GeneralInfo;
+  cast: TVShow.Cast[];
+  seasons: TVShow.Season[];
+  episodes: TVShow.Episode[];
+}
+
+export const getShowData = async (): Promise<ShowData> => {
   const response = await fetch(
     'https://api.tvmaze.com/shows/6771?embed[]=cast&embed[]=seasons&embed[]=episodes',
     {
@@ -7,6 +16,31 @@ export const getShowData = async (): Promise<TVShow.Show> => {
   );
 
   const data = (await response.json()) as TVShow.Show;
+  const {
+    _embedded: { cast, seasons, episodes },
+    ...rest
+  } = data;
 
-  return data;
+  const generalInfo = rest;
+
+  episodes.forEach((episode) => {
+    const randomImage = getRandomFallbackImage();
+
+    if (!episode.image) {
+      episode.image = {
+        medium: randomImage,
+        original: randomImage,
+        isFallback: true,
+      };
+    } else {
+      episode.image.isFallback = false;
+    }
+  });
+
+  return {
+    generalInfo,
+    cast,
+    seasons,
+    episodes,
+  };
 };

@@ -1,6 +1,9 @@
 declare namespace ShowContext {
   interface Data {
     isLoading: boolean;
-    tvShow: TVShow.Show;
+    generalInfo: TVShow.GeneralInfo;
+    cast: TVShow.Cast[];
+    seasons: TVShow.Season[];
+    episodes: TVShow.Episode[];
   }
 }

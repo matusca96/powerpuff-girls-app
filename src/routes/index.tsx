@@ -8,6 +8,8 @@ import { StatusBar } from 'react-native';
 import { Home } from '../screens/Home';
 import { EpisodeDetails } from '../screens/EpisodeDetails';
 import { theme } from '../styles/theme';
+import { Loading } from '../components/Loading';
+import useShow from '../hooks/useShow';
 
 const Stack = createStackNavigator();
 
@@ -19,16 +21,24 @@ const stackOptions: StackNavigationOptions = {
 };
 
 export const Routes = (): JSX.Element => {
+  const { isLoading } = useShow();
+
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={Home} options={stackOptions} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name="EpisodeDetails"
-          component={EpisodeDetails}
-          options={stackOptions}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} options={stackOptions} />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="EpisodeDetails"
+              component={EpisodeDetails}
+              options={stackOptions}
+            />
+          </Stack.Group>
+        </Stack.Navigator>
+      )}
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getRandomFallbackImage } from '../../utils/getRandomFallbackImage';
 
 import {
   Container,
@@ -19,7 +20,11 @@ export const EpisodeCard = ({
 }: EpisodeCardProps): JSX.Element => {
   return (
     <Container onPress={onSelectEpisode}>
-      <EpisodeImage source={{ uri: episode.image.original }} />
+      <EpisodeImage
+        resizeMode={episode.image?.isFallback ? 'contain' : 'cover'}
+        source={{ uri: episode.image?.original }}
+      />
+
       <InfoContainer>
         <Title>{`${episode.number}. ${episode.name}`}</Title>
         <Runtime>{`${episode.runtime}m`}</Runtime>

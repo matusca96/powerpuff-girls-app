@@ -8,22 +8,35 @@ interface ShowProviderProps {
 export const ShowContext = createContext({} as ShowContext.Data);
 
 export const ShowProvider = ({ children }: ShowProviderProps): JSX.Element => {
-  const [tvShow, setTvShow] = useState({} as TVShow.Show);
+  const [generalInfo, setGeneralInfo] = useState({} as TVShow.GeneralInfo);
+  const [cast, setCast] = useState<TVShow.Cast[]>([]);
+  const [seasons, setSeasons] = useState<TVShow.Season[]>([]);
+  const [episodes, setEpisodes] = useState<TVShow.Episode[]>([]);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
+    const loadData = async (): Promise<void> => {
+      try {
+        const data = await getShowData();
+        setGeneralInfo(data.generalInfo);
+        setCast(data.cast);
+        setSeasons(data.seasons);
+        setEpisodes(data.episodes);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    getShowData()
-      .then((data) => {
-        setTvShow(data);
-      })
-      .finally(() => setIsLoading(false));
+    loadData();
   }, []);
 
   return (
-    <ShowContext.Provider value={{ isLoading, tvShow }}>
+    <ShowContext.Provider
+      value={{ isLoading, generalInfo, cast, seasons, episodes }}
+    >
       {children}
     </ShowContext.Provider>
   );
