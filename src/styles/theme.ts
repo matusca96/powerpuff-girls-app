@@ -24,6 +24,7 @@ export const theme = {
     },
     pink: {
       50: '#fadcec',
+      100: '#fad2e7',
     },
   },
 };

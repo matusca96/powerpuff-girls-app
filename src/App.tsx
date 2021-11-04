@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import {
@@ -9,6 +10,8 @@ import {
   Inter_700Bold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
+
+import { Host } from 'react-native-portalize';
 import { Routes } from './routes';
 
 export const App = (): JSX.Element => {
@@ -25,8 +28,15 @@ export const App = (): JSX.Element => {
   }
 
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <Host>
+      <NavigationContainer>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
+        />
+        <Routes />
+      </NavigationContainer>
+    </Host>
   );
 };

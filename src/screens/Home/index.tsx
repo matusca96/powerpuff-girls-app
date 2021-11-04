@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Animated, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -25,18 +25,19 @@ import {
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 import { theme } from '../../styles/theme';
 import { CastList } from '../../components/CastList';
+import { InfoCastModal } from '../../components/InfoCastModal';
 
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const translateY = useBounceAnimation(!showMore, 500);
 
   return (
     <>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor="transparent"
+      <InfoCastModal
+        isVisible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
       />
       <ScrollContainer>
         <Header>
@@ -102,11 +103,13 @@ export const Home = (): JSX.Element => {
 
           <ListTitleContainer>
             <ListTitle>Cast & Characters</ListTitle>
-            <MaterialCommunityIcons
-              name="information-outline"
-              size={18}
-              color={theme.colors.gray[900]}
-            />
+            <TouchableWithoutFeedback onPress={() => setIsModalVisible(true)}>
+              <MaterialCommunityIcons
+                name="information-outline"
+                size={18}
+                color={theme.colors.gray[900]}
+              />
+            </TouchableWithoutFeedback>
           </ListTitleContainer>
           <CastList />
         </Content>

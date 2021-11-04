@@ -4,6 +4,7 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 
+import { StatusBar } from 'react-native';
 import { Home } from '../screens/Home';
 import { EpisodeDetails } from '../screens/EpisodeDetails';
 import { theme } from '../styles/theme';
