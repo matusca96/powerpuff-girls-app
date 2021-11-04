@@ -62,7 +62,7 @@ declare namespace TVShow {
   interface Character {
     id: string;
     name: string;
-    image: Image;
+    image?: Image;
   }
 
   interface Image {

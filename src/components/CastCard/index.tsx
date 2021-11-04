@@ -24,7 +24,10 @@ export const CastCard = ({ cast }: CastCardProps): JSX.Element => {
       start={[0.9, 0.1]}
       end={[0.1, 0.9]}
     >
-      <Picture source={{ uri: cast.character.image.original }} />
+      <Picture
+        resizeMode={cast.character.image?.isFallback ? 'contain' : 'cover'}
+        source={{ uri: cast.character.image?.original }}
+      />
       <InfoContainer>
         <PersonName>{cast.person.name}</PersonName>
         <CharacterName>{`as ${cast.character.name}`}</CharacterName>

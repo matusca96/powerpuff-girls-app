@@ -20,11 +20,11 @@ export const EpisodeImage = styled.Image`
 
 export const InfoContainer = styled.View`
   margin-left: 10px;
+
+  flex: 1;
 `;
 
 export const Title = styled.Text`
-  width: 80%;
-
   font-size: 16px;
   font-family: ${theme.fonts.bold};
 

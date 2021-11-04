@@ -4,6 +4,7 @@ import { Dimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 import { Portal } from 'react-native-portalize';
+import useShow from '../../hooks/useShow';
 import { theme } from '../../styles/theme';
 
 import {
@@ -17,36 +18,21 @@ import {
 
 interface SeasonListProps {
   isVisible: boolean;
+  changeSeason: React.Dispatch<React.SetStateAction<TVShow.Season>>;
   onClose: () => void;
 }
 
 export const SeasonListModal = ({
   isVisible,
+  changeSeason,
   onClose,
 }: SeasonListProps): JSX.Element => {
-  const seasons: TVShow.Season[] = [
-    {
-      id: '1',
-      name: '',
-      episodeOrder: 39,
-      number: 1,
-      summary: '',
-    },
-    {
-      id: '2',
-      name: '',
-      episodeOrder: 41,
-      number: 2,
-      summary: '',
-    },
-    {
-      id: '3',
-      name: '',
-      episodeOrder: 39,
-      number: 3,
-      summary: '',
-    },
-  ];
+  const { seasons } = useShow();
+
+  const handleOnChangeSeason = (season: TVShow.Season) => {
+    changeSeason(season);
+    onClose();
+  };
 
   return (
     <Portal>
@@ -65,9 +51,11 @@ export const SeasonListModal = ({
             data={seasons}
             keyExtractor={(season) => season.id}
             renderItem={({ item: season }) => (
-              <SeasonContainer>
-                <SeasonTitle>{`Season ${season.number}`}</SeasonTitle>
-              </SeasonContainer>
+              <GestureHandlerRootView>
+                <SeasonContainer onPress={() => handleOnChangeSeason(season)}>
+                  <SeasonTitle>{`Season ${season.number}`}</SeasonTitle>
+                </SeasonContainer>
+              </GestureHandlerRootView>
             )}
           />
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -44,10 +44,18 @@ export const Home = (): JSX.Element => {
   const [isSeasonListModalVisible, setIsSeasonListModalVisible] =
     useState(false);
 
+  const [selectedSeason, setSelectedSeason] = useState({} as TVShow.Season);
+
   const translateY = useBounceAnimation(!showMore, 500);
   const { navigate } = useNavigation<Routes.NavigationProp>();
 
   const { generalInfo, seasons, episodes } = useShow();
+
+  useEffect(() => {
+    setSelectedSeason(
+      seasons.find((season) => season.number === 1) ?? ({} as TVShow.Season),
+    );
+  }, [seasons]);
 
   return (
     <>
@@ -57,6 +65,7 @@ export const Home = (): JSX.Element => {
       />
       <SeasonListModal
         isVisible={isSeasonListModalVisible}
+        changeSeason={setSelectedSeason}
         onClose={() => setIsSeasonListModalVisible(false)}
       />
       <Header>
@@ -73,7 +82,9 @@ export const Home = (): JSX.Element => {
         />
       </Header>
       <EpisodeList
-        data={episodes}
+        data={episodes.filter(
+          (episode) => episode.season === selectedSeason.number,
+        )}
         keyExtractor={(episode) => episode.id}
         ListHeaderComponent={
           <Content>
@@ -137,7 +148,7 @@ export const Home = (): JSX.Element => {
               <SeasonsSelectButton
                 onPress={() => setIsSeasonListModalVisible(true)}
               >
-                <SeasonText>Season 1</SeasonText>
+                <SeasonText>{`Season ${selectedSeason.number}`}</SeasonText>
                 <MaterialIcons
                   name="arrow-drop-down"
                   size={24}
@@ -145,7 +156,9 @@ export const Home = (): JSX.Element => {
                 />
               </SeasonsSelectButton>
 
-              <SeasonEpisodesText>(41 episodes)</SeasonEpisodesText>
+              <SeasonEpisodesText>
+                {`(${selectedSeason.episodeOrder} episodes)`}
+              </SeasonEpisodesText>
             </SeasonsSelectContainer>
           </Content>
         }

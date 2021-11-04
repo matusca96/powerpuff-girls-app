@@ -23,6 +23,20 @@ export const getShowData = async (): Promise<ShowData> => {
 
   const generalInfo = rest;
 
+  cast.forEach((castItem) => {
+    const randomImage = getRandomFallbackImage();
+
+    if (!castItem.character.image) {
+      castItem.character.image = {
+        medium: randomImage,
+        original: randomImage,
+        isFallback: true,
+      };
+    } else {
+      castItem.character.image.isFallback = false;
+    }
+  });
+
   episodes.forEach((episode) => {
     const randomImage = getRandomFallbackImage();
 
