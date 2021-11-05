@@ -45,49 +45,53 @@ export const EpisodeDetails = ({
     : 'Sorry, there is no description available for this episode. 😥';
 
   const isFirstEpisodeFirstSeason = useMemo((): boolean => {
-    const isFirstEpisode = episode.number === 1
-    const isLastSeason = episode.season === 1
+    const isFirstEpisode = episode.number === 1;
+    const isLastSeason = episode.season === 1;
 
     if (isFirstEpisode && isLastSeason) {
       return true;
     }
 
     return false;
-  }, [episode, episodes, seasons])
+  }, [episode]);
 
   const isLastEpisodeLastSeason = useMemo((): boolean => {
-    const filteredEpisodes = episodes.filter((epi) => epi.season === episode.season);
+    const filteredEpisodes = episodes.filter(
+      (epi) => epi.season === episode.season,
+    );
 
     const isLastEpisode =
-      episode.number === Math.max.apply(Math, filteredEpisodes.map((epi) => epi.number));
+      episode.number === Math.max(...filteredEpisodes.map((epi) => epi.number));
 
     const isLastSeason =
-      episode.season === Math.max.apply(Math, seasons.map((s) => s.number));
+      episode.season === Math.max(...seasons.map((s) => s.number));
 
     if (isLastEpisode && isLastSeason) {
       return true;
     }
 
     return false;
-  }, [episode, episodes, seasons])
+  }, [episode, episodes, seasons]);
 
   const handleMovePreviousEpisode = () => {
-    const isFirstEpisode = episode.number === 1
+    const isFirstEpisode = episode.number === 1;
 
     const episodesOfPreviousSeason = episodes.filter(
-      (epi) => epi.season === episode.season - 1
-    )
+      (epi) => epi.season === episode.season - 1,
+    );
 
     const lastEpisodeOfPreviousSeason = episodesOfPreviousSeason.find(
-      (epi) => epi.number === Math.max.apply(Math, episodesOfPreviousSeason.map(
-        (epi) => epi.number)
-      )
-    )
+      (epi) =>
+        epi.number ===
+        Math.max(...episodesOfPreviousSeason.map((e) => e.number)),
+    );
 
-    const previousEpisode = isFirstEpisode ? lastEpisodeOfPreviousSeason
+    const previousEpisode = isFirstEpisode
+      ? lastEpisodeOfPreviousSeason
       : episodes.find(
-        (epi) => epi.number === episode.number - 1 && epi.season === episode.season,
-      );
+          (epi) =>
+            epi.number === episode.number - 1 && epi.season === episode.season,
+        );
 
     if (previousEpisode) {
       navigation.push('EpisodeDetails', { episode: previousEpisode });
@@ -95,24 +99,27 @@ export const EpisodeDetails = ({
   };
 
   const handleMoveNextEpisode = () => {
-    const filteredEpisodes = episodes.filter((epi) => epi.season === episode.season);
+    const filteredEpisodes = episodes.filter(
+      (epi) => epi.season === episode.season,
+    );
 
     const isLastEpisode =
-      episode.number === Math.max.apply(Math, filteredEpisodes.map(
-        (epi) => epi.number)
-      );
+      episode.number === Math.max(...filteredEpisodes.map((epi) => epi.number));
 
     const episodesOfNextSeason = episodes.filter(
-      (epi) => epi.season === episode.season + 1
-    )
+      (epi) => epi.season === episode.season + 1,
+    );
 
     const firstEpisodeOfNextSeason = episodesOfNextSeason.find(
-      (epi) => epi.number === 1
-    )
-
-    const nextEpisode = isLastEpisode ? firstEpisodeOfNextSeason : episodes.find(
-      (epi) => epi.number === episode.number + 1 && epi.season === episode.season,
+      (epi) => epi.number === 1,
     );
+
+    const nextEpisode = isLastEpisode
+      ? firstEpisodeOfNextSeason
+      : episodes.find(
+          (epi) =>
+            epi.number === episode.number + 1 && epi.season === episode.season,
+        );
 
     if (nextEpisode) {
       navigation.push('EpisodeDetails', { episode: nextEpisode });
@@ -121,7 +128,7 @@ export const EpisodeDetails = ({
 
   useEffect(() => {
     const onBackPress = () => {
-      navigation.popToTop()
+      navigation.popToTop();
       return true;
     };
 
@@ -129,7 +136,7 @@ export const EpisodeDetails = ({
 
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-  }, [])
+  }, []);
 
   return (
     <Container>

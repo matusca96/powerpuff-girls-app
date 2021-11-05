@@ -6,6 +6,7 @@
     "slug": "powerpuff-girls-app",
     "version": "1.0.0",
     "icon": "./src/assets/icon.png",
+    "orientation": "portrait",
     "splash": {
       "image": "./src/assets/splash-screen.png",
       "resizeMode": "cover"
