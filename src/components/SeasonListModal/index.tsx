@@ -18,12 +18,14 @@ import {
 
 interface SeasonListProps {
   isVisible: boolean;
+  selectedSeasonNumber: number;
   changeSeason: React.Dispatch<React.SetStateAction<TVShow.Season>>;
   onClose: () => void;
 }
 
 export const SeasonListModal = ({
   isVisible,
+  selectedSeasonNumber,
   changeSeason,
   onClose,
 }: SeasonListProps): JSX.Element => {
@@ -53,7 +55,9 @@ export const SeasonListModal = ({
             renderItem={({ item: season }) => (
               <GestureHandlerRootView>
                 <SeasonContainer onPress={() => handleOnChangeSeason(season)}>
-                  <SeasonTitle>{`Season ${season.number}`}</SeasonTitle>
+                  <SeasonTitle
+                    isSelected={season.number === selectedSeasonNumber}
+                  >{`Season ${season.number}`}</SeasonTitle>
                 </SeasonContainer>
               </GestureHandlerRootView>
             )}

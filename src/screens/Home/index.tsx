@@ -68,6 +68,7 @@ export const Home = (): JSX.Element => {
       />
       <SeasonListModal
         isVisible={isSeasonListModalVisible}
+        selectedSeasonNumber={selectedSeason.number}
         changeSeason={setSelectedSeason}
         onClose={() => setIsSeasonListModalVisible(false)}
       />

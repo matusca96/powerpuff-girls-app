@@ -38,9 +38,14 @@ export const SeasonContainer = styled(RectButton)`
   border-radius: 5px;
 `;
 
-export const SeasonTitle = styled.Text`
-  font-size: 22px;
-  font-family: ${theme.fonts.regular};
+interface SeasonTitleProps {
+  isSelected: boolean;
+}
+
+export const SeasonTitle = styled.Text<SeasonTitleProps>`
+  font-size: ${({ isSelected }) => (isSelected ? '24px' : '22px')};
+  font-family: ${({ isSelected }) =>
+    isSelected ? theme.fonts.bold : theme.fonts.regular};
 
   text-align: center;
 
