@@ -1,5 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
 import { theme } from '../../styles/theme';
 
 export const Container = styled(LinearGradient)`
@@ -15,7 +17,7 @@ export const Container = styled(LinearGradient)`
   margin-right: 10px;
 `;
 
-export const Picture = styled.Image`
+export const Picture = styled(Animated.Image)`
   width: 45px;
 
   border-radius: 2px;

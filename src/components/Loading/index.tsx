@@ -16,21 +16,25 @@ export const Loading = (): JSX.Element => {
         Animated.timing(anim, {
           toValue: 1.2,
           duration: 500,
-          useNativeDriver: true
+          useNativeDriver: true,
         }),
         // decrease size
         Animated.timing(anim, {
           toValue: 1,
           duration: 500,
-          useNativeDriver: true
+          useNativeDriver: true,
         }),
-      ])
+      ]),
     ).start();
-  }, []);
+  }, [anim]);
 
   return (
     <Container>
-      <HeartIcon source={{ uri: HEART_IMAGE }} resizeMode="contain" style={{ transform: [{ scale: anim }] }} />
+      <HeartIcon
+        source={{ uri: HEART_IMAGE }}
+        resizeMode="contain"
+        style={{ transform: [{ scale: anim }] }}
+      />
     </Container>
   );
 };
