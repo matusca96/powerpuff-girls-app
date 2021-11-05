@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
 import { theme } from '../../styles/theme';
 
@@ -31,6 +32,8 @@ export const EpisodeImage = styled.Image<EpisodeImageProps>`
 
 export const Content = styled.View`
   padding: 12px;
+
+  flex: 1;
 `;
 
 export const TitleContainer = styled(LinearGradient)`
@@ -82,4 +85,37 @@ export const Summary = styled.Text`
   font-family: ${theme.fonts.regular};
 
   color: ${theme.colors.gray[700]};
+`;
+
+export const ButtonContainer = styled.View`
+  margin-top: auto;
+  padding-bottom: 20px;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PreviousEpisodeButton = styled(RectButton)`
+  height: 100px;
+  padding: 14px;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  border-radius: 50px;
+  background-color: ${theme.colors.green[50]};
+`;
+
+export const NextEpisodeButton = styled(RectButton)`
+  margin-left: 15px;
+
+  height: 100px;
+  padding: 14px;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  border-radius: 50px;
+  background-color: ${theme.colors.blue[50]};
 `;
