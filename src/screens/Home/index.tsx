@@ -4,6 +4,7 @@ import { Rating } from 'react-native-ratings';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+import { StackNavigationProp } from '@react-navigation/stack';
 import { theme } from '../../styles/theme';
 import { useBounceAnimation } from '../../hooks/useBounceAnimation';
 
@@ -38,6 +39,8 @@ import useShow from '../../hooks/useShow';
 import { getPremieredYear } from '../../utils/getPremieredYear';
 import { normalizeText } from '../../utils/normalizeText';
 
+type HomeProps = StackNavigationProp<Routes.RootStackParamList, 'Home'>;
+
 export const Home = (): JSX.Element => {
   const [showMore, setShowMore] = useState(false);
   const [isInfoCastModalVisible, setIsInfoCastModalVisible] = useState(false);
@@ -47,7 +50,7 @@ export const Home = (): JSX.Element => {
   const [selectedSeason, setSelectedSeason] = useState({} as TVShow.Season);
 
   const translateY = useBounceAnimation(!showMore, 500);
-  const { navigate } = useNavigation<Routes.NavigationProp>();
+  const { navigate } = useNavigation<HomeProps>();
 
   const { generalInfo, seasons, episodes } = useShow();
 
@@ -165,7 +168,11 @@ export const Home = (): JSX.Element => {
         renderItem={({ item: episode }) => (
           <EpisodeCard
             episode={episode}
-            onSelectEpisode={() => navigate('EpisodeDetails')}
+            onSelectEpisode={() =>
+              navigate('EpisodeDetails', {
+                episode,
+              })
+            }
           />
         )}
       />

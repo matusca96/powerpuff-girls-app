@@ -1,3 +1,9 @@
 declare namespace Routes {
-  type NavigationProp = Props['navigation'];
+  // interface not working
+  type RootStackParamList = {
+    Home: undefined;
+    EpisodeDetails: {
+      episode: TVShow.Episode;
+    };
+  };
 }
