@@ -31,11 +31,12 @@ declare namespace TVShow {
   interface Episode {
     id: string;
     name: string;
+    airdate: string;
     season: number;
     number: number;
     runtime: number;
     image?: Image;
-    summary: string;
+    summary?: string;
   }
 
   interface Season {
