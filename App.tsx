@@ -12,8 +12,8 @@ import {
 } from '@expo-google-fonts/inter';
 import { Host } from 'react-native-portalize';
 
-import { ShowProvider } from './contexts/ShowContext';
-import { Routes } from './routes';
+import { ShowProvider } from './src/contexts/ShowContext';
+import { Routes } from './src/routes';
 
 export const App = (): JSX.Element => {
   const [fontsLoaded] = useFonts({
