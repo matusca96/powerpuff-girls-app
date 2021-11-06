@@ -11,7 +11,7 @@ export const CastList = (): JSX.Element => {
     <Container
       accessibilityLabel="cast-list"
       data={cast}
-      keyExtractor={(item) => item.character.id}
+      keyExtractor={(item) => String(item.character.id)}
       renderItem={({ item: castItem }) => <CastCard cast={castItem} />}
       horizontal
       persistentScrollbar
