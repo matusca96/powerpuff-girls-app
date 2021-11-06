@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { getShowData } from '../services/getShowData';
 
 interface ShowProviderProps {
@@ -16,29 +22,32 @@ export const ShowProvider = ({ children }: ShowProviderProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorOnLoadData, setErrorOnLoadData] = useState(false);
 
-  useEffect(() => {
-    const loadData = async (): Promise<void> => {
-      try {
-        const data = await getShowData();
-        setGeneralInfo(data.generalInfo);
-        setCast(data.cast);
-        setSeasons(data.seasons);
-        setEpisodes(data.episodes);
+  const loadData = useCallback(async (): Promise<void> => {
+    try {
+      setErrorOnLoadData(false);
 
-        setIsLoading(false);
-      } catch (err) {
-        setErrorOnLoadData(true);
-      }
-    };
+      const data = await getShowData();
+      setGeneralInfo(data.generalInfo);
+      setCast(data.cast);
+      setSeasons(data.seasons);
+      setEpisodes(data.episodes);
 
-    loadData();
+      setIsLoading(false);
+    } catch (err) {
+      setErrorOnLoadData(true);
+    }
   }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   return (
     <ShowContext.Provider
       value={{
         isLoading,
         errorOnLoadData,
+        loadData,
         generalInfo,
         cast,
         seasons,

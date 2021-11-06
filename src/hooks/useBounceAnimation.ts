@@ -21,7 +21,7 @@ export const useBounceAnimation = (running = true, rate = 300) => {
           useNativeDriver: true,
           isInteraction: false,
         }),
-      ])
+      ]),
     ),
   ).current;
 
@@ -34,7 +34,7 @@ export const useBounceAnimation = (running = true, rate = 300) => {
     }
 
     return () => anim.stop();
-  }, [running, anim]);
+  }, [running, anim, val]);
 
   return val;
 };
