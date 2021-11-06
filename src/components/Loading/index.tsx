@@ -1,11 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Image } from 'react-native';
-
-import Heart from '../../assets/heart.png';
+import { Animated } from 'react-native';
 
 import { Container, HeartIcon } from './styles';
-
-const HEART_IMAGE = Image.resolveAssetSource(Heart).uri;
 
 export const Loading = (): JSX.Element => {
   const anim = useRef(new Animated.Value(1)).current;
@@ -31,7 +27,8 @@ export const Loading = (): JSX.Element => {
   return (
     <Container>
       <HeartIcon
-        source={{ uri: HEART_IMAGE }}
+        accessibilityLabel="heart-icon"
+        source={require('../../assets/heart.png')}
         resizeMode="contain"
         style={{ transform: [{ scale: anim }] }}
       />

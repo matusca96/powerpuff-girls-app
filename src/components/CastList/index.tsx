@@ -9,6 +9,7 @@ export const CastList = (): JSX.Element => {
 
   return (
     <Container
+      accessibilityLabel="cast-list"
       data={cast}
       keyExtractor={(item) => item.character.id}
       renderItem={({ item: castItem }) => <CastCard cast={castItem} />}

@@ -51,10 +51,13 @@ export const SeasonListModal = ({
           <Title>Choose a season</Title>
           <SeasonList
             data={seasons}
-            keyExtractor={(season) => season.id}
+            keyExtractor={(season) => String(season.id)}
             renderItem={({ item: season }) => (
               <GestureHandlerRootView>
-                <SeasonContainer onPress={() => handleOnChangeSeason(season)}>
+                <SeasonContainer
+                  testID={String(season.id)}
+                  onPress={() => handleOnChangeSeason(season)}
+                >
                   <SeasonTitle
                     isSelected={season.number === selectedSeasonNumber}
                   >{`Season ${season.number}`}</SeasonTitle>

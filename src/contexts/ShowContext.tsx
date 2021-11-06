@@ -14,6 +14,7 @@ export const ShowProvider = ({ children }: ShowProviderProps): JSX.Element => {
   const [episodes, setEpisodes] = useState<TVShow.Episode[]>([]);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [errorOnLoadData, setErrorOnLoadData] = useState(false);
 
   useEffect(() => {
     const loadData = async (): Promise<void> => {
@@ -23,10 +24,10 @@ export const ShowProvider = ({ children }: ShowProviderProps): JSX.Element => {
         setCast(data.cast);
         setSeasons(data.seasons);
         setEpisodes(data.episodes);
-      } catch (err) {
-        console.log(err);
-      } finally {
+
         setIsLoading(false);
+      } catch (err) {
+        setErrorOnLoadData(true);
       }
     };
 
@@ -35,7 +36,14 @@ export const ShowProvider = ({ children }: ShowProviderProps): JSX.Element => {
 
   return (
     <ShowContext.Provider
-      value={{ isLoading, generalInfo, cast, seasons, episodes }}
+      value={{
+        isLoading,
+        errorOnLoadData,
+        generalInfo,
+        cast,
+        seasons,
+        episodes,
+      }}
     >
       {children}
     </ShowContext.Provider>

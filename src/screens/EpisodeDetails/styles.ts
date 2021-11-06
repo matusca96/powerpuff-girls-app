@@ -23,7 +23,7 @@ export const EpisodeImage = styled.Image<EpisodeImageProps>`
       ? css`
           height: 65%;
 
-          margin-top: 50px;
+          margin: 50px auto 0;
         `
       : css`
           height: 100%;

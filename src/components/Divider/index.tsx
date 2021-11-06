@@ -8,5 +8,11 @@ interface DividerProps {
 }
 
 export const Divider = ({ orientation, style }: DividerProps): JSX.Element => {
-  return <Container style={style} orientation={orientation} />;
+  return (
+    <Container
+      accessibilityLabel="spacer"
+      style={style}
+      orientation={orientation}
+    />
+  );
 };

@@ -1,6 +1,6 @@
 declare namespace TVShow {
   interface Show {
-    id: string;
+    id: number;
     name: string;
     genres: string[];
     premiered: string;
@@ -17,7 +17,7 @@ declare namespace TVShow {
   }
 
   interface GeneralInfo {
-    id: string;
+    id: number;
     name: string;
     genres: string[];
     premiered: string;
@@ -29,7 +29,7 @@ declare namespace TVShow {
   }
 
   interface Episode {
-    id: string;
+    id: number;
     name: string;
     airdate: string;
     season: number;
@@ -40,7 +40,7 @@ declare namespace TVShow {
   }
 
   interface Season {
-    id: string;
+    id: number;
     number: number;
     name: string;
     episodeOrder: number;
@@ -55,20 +55,20 @@ declare namespace TVShow {
   }
 
   interface Person {
-    id: string;
+    id: number;
     name: string;
     image: Image;
   }
 
   interface Character {
-    id: string;
+    id: number;
     name: string;
     image?: Image;
   }
 
   interface Image {
-    medium: string;
-    original: string;
+    medium: string | any;
+    original: string | any;
 
     // only used on front
     isFallback?: boolean;

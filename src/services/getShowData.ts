@@ -16,6 +16,7 @@ export const getShowData = async (): Promise<ShowData> => {
   );
 
   const data = (await response.json()) as TVShow.Show;
+
   const {
     _embedded: { cast, seasons, episodes },
     ...rest
@@ -23,8 +24,8 @@ export const getShowData = async (): Promise<ShowData> => {
 
   const generalInfo = rest;
 
-  cast.forEach((castItem) => {
-    const randomImage = getRandomFallbackImage();
+  cast.forEach(async (castItem) => {
+    const randomImage = await getRandomFallbackImage();
 
     if (!castItem.character.image) {
       castItem.character.image = {
@@ -37,8 +38,8 @@ export const getShowData = async (): Promise<ShowData> => {
     }
   });
 
-  episodes.forEach((episode) => {
-    const randomImage = getRandomFallbackImage();
+  episodes.forEach(async (episode) => {
+    const randomImage = await getRandomFallbackImage();
 
     if (!episode.image) {
       episode.image = {

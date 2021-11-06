@@ -38,6 +38,17 @@
     "import/no-duplicates": "off",
     "consistent-return": "off",
     "no-underscore-dangle": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.tsx",
+          "**/*.spec.ts"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
     "no-plusplus": [
       2,
       {

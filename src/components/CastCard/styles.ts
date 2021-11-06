@@ -17,12 +17,6 @@ export const Container = styled(LinearGradient)`
   margin-right: 10px;
 `;
 
-export const Picture = styled(Animated.Image)`
-  width: 45px;
-
-  border-radius: 2px;
-`;
-
 export const InfoContainer = styled.View`
   margin-left: 10px;
 `;

@@ -1,5 +1,3 @@
-import { Image } from 'react-native';
-
 import Blossom from '../assets/blossom.png';
 import Bubbles from '../assets/bubbles.png';
 import Buttercup from '../assets/buttercup.png';
@@ -12,7 +10,7 @@ import PrincessMorbucks from '../assets/princess-morbucks.png';
 import Fuzzy from '../assets/fuzzy.png';
 import MojoJojo from '../assets/mojo-jojo.png';
 
-export const getRandomFallbackImage = (): string => {
+export const getRandomFallbackImage = (): any => {
   const images = [
     Blossom,
     Bubbles,
@@ -29,7 +27,5 @@ export const getRandomFallbackImage = (): string => {
 
   const randomImage = images[Math.floor(Math.random() * images.length)];
 
-  const { uri } = Image.resolveAssetSource(randomImage);
-
-  return uri;
+  return randomImage;
 };

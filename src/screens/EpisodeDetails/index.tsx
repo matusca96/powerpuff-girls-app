@@ -136,13 +136,17 @@ export const EpisodeDetails = ({
 
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-  }, []);
+  }, [navigation]);
 
   return (
     <Container>
       <EpisodeImageContainer>
         <EpisodeImage
-          source={{ uri: episode.image?.original }}
+          source={
+            episode.image?.isFallback
+              ? episode.image.original
+              : { uri: episode.image?.original }
+          }
           resizeMode={episode.image?.isFallback ? 'contain' : 'cover'}
           isFallback={episode.image?.isFallback}
         />
@@ -173,7 +177,10 @@ export const EpisodeDetails = ({
 
         <ButtonContainer>
           {!isFirstEpisodeFirstSeason && (
-            <PreviousEpisodeButton onPress={handleMovePreviousEpisode}>
+            <PreviousEpisodeButton
+              testID="previous-button"
+              onPress={handleMovePreviousEpisode}
+            >
               <AntDesign
                 name="arrowup"
                 size={24}
@@ -183,7 +190,10 @@ export const EpisodeDetails = ({
           )}
 
           {!isLastEpisodeLastSeason && (
-            <NextEpisodeButton onPress={handleMoveNextEpisode}>
+            <NextEpisodeButton
+              testID="next-button"
+              onPress={handleMoveNextEpisode}
+            >
               <AntDesign
                 name="arrowdown"
                 size={24}

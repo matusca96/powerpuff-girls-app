@@ -89,7 +89,7 @@ export const Home = (): JSX.Element => {
         data={episodes.filter(
           (episode) => episode.season === selectedSeason.number,
         )}
-        keyExtractor={(episode) => episode.id}
+        keyExtractor={(episode) => String(episode.id)}
         ListHeaderComponent={
           <Content>
             <Title>{generalInfo.name}</Title>
@@ -116,11 +116,17 @@ export const Home = (): JSX.Element => {
                 </Badge>
               ))}
             </BadgeContainer>
-            <Description numberOfLines={showMore ? undefined : 4}>
+            <Description
+              accessibilityLabel="summary"
+              numberOfLines={showMore ? undefined : 4}
+            >
               {normalizeText(generalInfo.summary)}
             </Description>
 
-            <TouchableWithoutFeedback onPress={() => setShowMore(!showMore)}>
+            <TouchableWithoutFeedback
+              accessibilityLabel="expand-summary"
+              onPress={() => setShowMore(!showMore)}
+            >
               <ContainerButton
                 style={{
                   translateY,
@@ -137,6 +143,7 @@ export const Home = (): JSX.Element => {
             <ListTitleContainer>
               <ListTitle>Cast & Characters</ListTitle>
               <TouchableWithoutFeedback
+                accessibilityLabel="info-button"
                 onPress={() => setIsInfoCastModalVisible(true)}
               >
                 <MaterialCommunityIcons
@@ -150,6 +157,7 @@ export const Home = (): JSX.Element => {
 
             <SeasonsSelectContainer>
               <SeasonsSelectButton
+                testID="select-season-button"
                 onPress={() => setIsSeasonListModalVisible(true)}
               >
                 <SeasonText>{`Season ${selectedSeason.number}`}</SeasonText>
