@@ -149,7 +149,6 @@ export const EpisodeDetails = ({
               : { uri: episode.image?.original }
           }
           resizeMode={episode.image?.isFallback ? 'contain' : 'cover'}
-          isFallback={episode.image?.isFallback}
         >
           <BackButton
             testID="back-button"

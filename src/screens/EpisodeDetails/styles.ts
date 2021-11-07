@@ -31,21 +31,8 @@ export const BackButton = styled(RectButton)`
   background-color: ${theme.colors.white};
 `;
 
-interface EpisodeImageProps {
-  isFallback?: boolean;
-}
-
-export const EpisodeImage = styled.ImageBackground<EpisodeImageProps>`
-  ${({ isFallback }) =>
-    isFallback
-      ? css`
-          height: 65%;
-
-          margin: 50px auto 0;
-        `
-      : css`
-          height: 100%;
-        `}
+export const EpisodeImage = styled.ImageBackground`
+  height: 100%;
 `;
 
 export const Content = styled.View`
