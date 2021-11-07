@@ -1,6 +1,8 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+
 import { theme } from '../../styles/theme';
 
 export const Container = styled.View`
@@ -9,15 +11,31 @@ export const Container = styled.View`
   background-color: ${theme.colors.white};
 `;
 
-export const EpisodeImageContainer = styled.View`
+export const Header = styled.View`
   height: 220px;
+`;
+
+export const BackButton = styled(RectButton)`
+  margin-top: ${getStatusBarHeight()}px;
+  margin-left: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 20px;
+
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${theme.colors.white};
 `;
 
 interface EpisodeImageProps {
   isFallback?: boolean;
 }
 
-export const EpisodeImage = styled.Image<EpisodeImageProps>`
+export const EpisodeImage = styled.ImageBackground<EpisodeImageProps>`
   ${({ isFallback }) =>
     isFallback
       ? css`

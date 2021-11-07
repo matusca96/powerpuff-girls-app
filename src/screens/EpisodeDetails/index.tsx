@@ -3,12 +3,13 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { format, parseISO } from 'date-fns';
 
 import { BackHandler } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import { theme } from '../../styles/theme';
 
 import {
   Container,
-  EpisodeImageContainer,
+  BackButton,
+  Header,
   EpisodeImage,
   Content,
   TitleContainer,
@@ -140,7 +141,7 @@ export const EpisodeDetails = ({
 
   return (
     <Container>
-      <EpisodeImageContainer>
+      <Header>
         <EpisodeImage
           source={
             episode.image?.isFallback
@@ -149,8 +150,19 @@ export const EpisodeDetails = ({
           }
           resizeMode={episode.image?.isFallback ? 'contain' : 'cover'}
           isFallback={episode.image?.isFallback}
-        />
-      </EpisodeImageContainer>
+        >
+          <BackButton
+            testID="back-button"
+            onPress={() => navigation.popToTop()}
+          >
+            <Feather
+              name="arrow-left"
+              size={24}
+              color={theme.colors.gray[900]}
+            />
+          </BackButton>
+        </EpisodeImage>
+      </Header>
       <Content>
         <TitleContainer
           colors={['transparent', theme.colors.gray[50], 'transparent']}

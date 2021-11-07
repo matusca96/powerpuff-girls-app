@@ -1,8 +1,8 @@
 {
-  "name": "powerpuffgirlsapp",
-  "displayName": "powerpuff-girls-app",
+  "name": "The Powerpuff Girls",
+  "displayName": "The Powerpuff Girls",
   "expo": {
-    "name": "powerpuff-girls-app",
+    "name": "The Powerpuff Girls",
     "slug": "powerpuff-girls-app",
     "version": "1.0.0",
     "icon": "./src/assets/icon.png",

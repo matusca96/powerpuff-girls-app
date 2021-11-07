@@ -66,7 +66,12 @@ describe('EpisodeDetails screen component', () => {
   ];
 
   const fakePushFunction = jest.fn();
-  const navigation = { navigate: jest.fn(), push: fakePushFunction };
+  const fakePopToTopFunction = jest.fn();
+  const navigation = {
+    navigate: jest.fn(),
+    push: fakePushFunction,
+    popToTop: fakePopToTopFunction,
+  };
 
   it('renders correctly if it is the first episode of first season', () => {
     const episode = episodes[0]; // first episode/season
@@ -190,5 +195,24 @@ describe('EpisodeDetails screen component', () => {
     fireEvent.press(nextButton);
 
     expect(fakePushFunction).toHaveBeenCalled();
+  });
+
+  it('goes back to home screen when press back button', () => {
+    const episode = episodes[0];
+
+    const { getByTestId } = render(
+      <ShowContext.Provider value={{ seasons, episodes } as any}>
+        <EpisodeDetails
+          route={{ params: { episode } } as any}
+          navigation={navigation as any}
+        />
+      </ShowContext.Provider>,
+    );
+
+    const backButton = getByTestId('back-button');
+
+    fireEvent.press(backButton);
+
+    expect(fakePopToTopFunction).toHaveBeenCalled();
   });
 });
