@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#fff"
-      }
+      },
+      "package": "app.powerpuffgirls.App"
     },
     "assetBundlePatterns": [
       "**/*"
